@@ -49,6 +49,6 @@ if __name__ == "__main__":
 
     with open(args.file, "r") as f:
         data = f.read()
-        compressed_data = compress_data_with_limit(data.encode("utf-8"), 6088)
+        compressed_data = compress_data_with_limit(data.encode("utf-8"), 7093)
         for i, chunk in enumerate(compressed_data):
             generate_qr_code(chunk, f"qr_code_{i}.png")

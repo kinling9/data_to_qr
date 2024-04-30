@@ -75,6 +75,6 @@ if __name__ == "__main__":
     import zlib
 
     # print(zlib.decompress(decodedObjects[0].data))
-    print(decompress_binary_to_string(decodedObjects[0].data))
+    print(decompress_binary_to_string(decodedObjects[0].data), end="")
 
     # display(im, decodedObjects)
