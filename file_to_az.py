@@ -21,13 +21,8 @@ def get_md5(object):
     return md.hexdigest()
 
 
-# ERROR_CORRECTION = 1
-# MAX_TRUNK_BYTES = (2953,2331,1663,1273)[ERROR_CORRECTION]
-# MAX_TRUNK_CHARS = (4296,3391,2420,1852)[ERROR_CORRECTION]
-
 MAX_TRUNK_CHARS = 2500
-MAX_TRUNK_CHARS = 2512
-# MAX_TRUNK_CHARS = 800
+MAX_TRUNK_CHARS = 2412
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Compress data and generate QR code")
@@ -55,9 +50,6 @@ if __name__ == "__main__":
         for i in range(num_trunks):
             logging.info(f"Encoding QrCode.... {i+1} / {num_trunks}")
             payload = data[i * MAX_TRUNK_CHARS : (i + 1) * MAX_TRUNK_CHARS]
-            # print(len(payload))
-            # md5 = get_md5(payload)
             header = f"{args.file} {i} {num_trunks} {compressed} "
-            # print(header)
-            img = AztecCode(header + payload)
-            img.save(os.path.join(f"{args.file}-{i}.png"))
+            img = AztecCode(header + payload, size=151, compact=False)
+            img.save(os.path.join(f"{args.file}-{i}.png"), border=4, module_size=4)
